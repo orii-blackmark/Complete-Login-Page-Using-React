@@ -8,7 +8,7 @@ function Login() {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    setTimeout(function(){
+    setTimeout(function () {
       setMsg("");
     }, 5000);
   }, [msg]);
@@ -37,25 +37,28 @@ function Login() {
     if (user !== "" && pass !== "") {
       var url = "https://localhost/react/login.php";
       var headers = {
-        "Accept" : "application/json",
-        "Content-type" : "application/json"
+        Accept: "application/json",
+        "Content-type": "application/json",
       };
       var Data = {
         user: user,
-        pass: pass
+        pass: pass,
       };
-      fetch(url,{
+      fetch(url, {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(Data)
-      }).then((response) => response.json())
-      .then((response) => {
-        
+        body: JSON.stringify(Data),
       })
-
-
-    }else{
-      setError("All fields are required!")
+        .then((response) => response.json())
+        .then((response) => {
+          setMsg(response[0].result);
+        })
+        .catch((err) => {
+          setError(err);
+          console.log(err);
+        });
+    } else {
+      setError("All fields are required!");
     }
   }
   return (
