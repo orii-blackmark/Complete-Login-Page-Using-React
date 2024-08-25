@@ -41,6 +41,7 @@ label {
 }
 p {
   color: blue;
+  cursor: pointer;
 }
 .error {
   color: red;
