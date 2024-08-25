@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Style.css";
 
 function Login() {
+  const naviget = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +53,17 @@ function Login() {
       })
         .then((response) => response.json())
         .then((response) => {
-          setMsg(response[0].result);
+          if (
+            response[0].result === "Invalid Username!" ||
+            response[0].result === "Invalid Password!"
+          ) {
+            setError(response[0].result);
+          } else {
+            setMsg(response[0].result);
+            setTimeout(function () {
+              naviget("/dashboard");
+            }, 5000);
+          }
         })
         .catch((err) => {
           setError(err);
@@ -63,9 +75,6 @@ function Login() {
   }
   return (
     <div className="form">
-      <div className="title">
-        <h2>Enter your Details to Login</h2>
-      </div>
       <p>
         {error !== "" ? (
           <span className="error">{error}</span>
