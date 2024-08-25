@@ -1,16 +1,11 @@
 import "./Style.css";
 
-function Login() {
+function Dashboard() {
   return (
     <div className="form">
-      <label htmlFor="">Username</label>
-      <input type="text" />
-      <label htmlFor="">Password</label>
-      <input type="password" />
-      <label htmlFor=""></label>
-      <input type="submit" defaultValue="Login" className="button" />
+      <h3>Dashboard</h3>
     </div>
   );
 }
 
-export default Login;
+export default Dashboard;
