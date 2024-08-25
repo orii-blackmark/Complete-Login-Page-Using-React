@@ -8,7 +8,7 @@ function Login() {
       <label htmlFor="">Password</label>
       <input type="password" />
       <label htmlFor=""></label>
-      <input type="submit" defaultValue="Login" className="button" />
+      <input type="submit" value="Login" defaultValue="Login" className="button" />
     </div>
   );
 }
