@@ -2,10 +2,12 @@ import "./Style.css";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const naviget = useNavigate();
+  const navigate = useNavigate();
 
   function logoutSubmit() {
-    naviget("/");
+    localStorage.setItem("login", false);
+    localStorage.setItem("loginStatus", "Logged out successfully!");
+    navigate("/");
   }
 
   return (

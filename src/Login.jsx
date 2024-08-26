@@ -3,17 +3,29 @@ import { useNavigate } from "react-router-dom";
 import "./Style.css";
 
 function Login() {
-  const naviget = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
+    let login = localStorage.getItem("login");
+    if (login) {
+      navigate("/dashboard");
+    }
+    let loginStatus = localStorage.getItem("loginStatus");
+    if (loginStatus) {
+      setError(loginStatus);
+      setTimeout(function () {
+        localStorage.clear();
+        window.location.reload();
+      }, 3000);
+    }
     setTimeout(function () {
       setMsg("");
     }, 5000);
-  }, [msg]);
+  }, [navigate]);
 
   const handleInputChange = (e, type) => {
     switch (type) {
@@ -61,7 +73,8 @@ function Login() {
           } else {
             setMsg(response[0].result);
             setTimeout(function () {
-              naviget("/dashboard");
+              localStorage.setItem("login", true);
+              navigate("/dashboard");
             }, 5000);
           }
         })
